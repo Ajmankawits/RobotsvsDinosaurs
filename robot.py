@@ -1,10 +1,16 @@
-from weapon import Weapon 
-from dinosaur import Dinosaur
 class Robot:
-    def __init__(self, name):
-        self.robot_name = name
-        self.robot_health = 1000
-        self.robot_weapon = Weapon("Railgun", 50)
+    def __init__(self, name, Weapon):
+        self.name = name
+        self.health = 100
+        self.weapon = Weapon
     
-    def robot_attack(self,dinosaur):
-       pass
+    def robot_attack(self, dinosaur):
+        if self.health > 0:
+            while True:
+                dinosaur.health -= self.weapon.attack_power
+                print(f'{dinosaur.type} health is now {dinosaur.health}') 
+
+
+                
+    
+    
