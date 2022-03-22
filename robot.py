@@ -6,10 +6,12 @@ class Robot:
     
     def robot_attack(self, dinosaur):
         if self.health > 0:
-            while True:
-                dinosaur.health -= self.weapon.attack_power
-                print(f'{dinosaur.type} health is now {dinosaur.health}') 
+             dinosaur.health -= self.weapon.attack_power
+             print(f'{dinosaur.type} health is now {dinosaur.health}')
+             return dinosaur.health 
 
+            
+               
 
                 
     

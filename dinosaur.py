@@ -7,10 +7,9 @@ class Dinosaur:
     
     def dinosaur_attack(self, robot):
         if self.health > 0:
-            while True:
-                robot.health = robot.health - self.attack
-                print(f'{robot.type} health is now {robot.health}') 
+            robot.health = robot.health - self.attack
+            print(f'{robot.type} health is now {robot.health}')
+            return robot.health
         
         
-        
-
+          
