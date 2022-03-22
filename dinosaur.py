@@ -8,7 +8,7 @@ class Dinosaur:
     def dinosaur_attack(self, robot):
         if self.health > 0:
             robot.health = robot.health - self.attack
-            print(f'{robot.type} health is now {robot.health}')
+            print(f'{robot.name} health is now {robot.health}')
             return robot.health
         
         

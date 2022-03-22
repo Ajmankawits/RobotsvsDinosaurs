@@ -10,21 +10,83 @@ class Battlefield:
         self.fleet = Fleet()
         self.herd = Herd()
      
-    def run_game():
-        pass
+    def run_game(self):
+        self.display_welcome()
+        self.battle() 
+        self.display_winners()
+    
     def display_welcome(self):
-        pass
+        print("Welcome to Robots vs Dinosaurs!")
+
     def battle(self):
-        pass
-    def dino_turn(self, dinosaur):
-        pass
-    def robo_turn(self, robot):
-        pass
+        self.robots_alive = True
+        self.dinos_alive = True
+        while len(self.fleet.robots) > 0 and len(self.herd.dinosaurs) > 0:
+            if self.fleet.robots[0].health > 0 or self.herd.dinosaurs[0].health > 0:
+                self.robo_turn()
+
+                if self.herd.dinosaurs[0].health <= 0:
+                    print(f'{self.herd.dinosaurs[0].type} has been vaporized!')
+                    self.herd.dinosaurs.remove(self.herd.dinosaurs[0])
+                elif self.fleet.robots[0].health <= 0:
+                    print(f'{self.fleet.robots[0].name} has been torn to shreds!')
+                    self.fleet.robots.remove(self.fleet.robots[0])
+
+                    if len(self.fleet.robots) == 0:
+                        self.robots_alive = False
+                        return self.robots_alive
+                    elif len(self.herd.dinosaurs) == 0:
+                        self.dinos_alive = False
+                        return self.dinos_alive
+                
+                self.dino_turn()
+
+                if self.herd.dinosaurs[0].health <= 0:
+                    print(f'{self.herd.dinosaurs[0].type} has been vaporized!')
+                    self.herd.dinosaurs.remove(self.herd.dinosaurs[0])
+                elif self.fleet.robots[0].health <= 0:
+                    print(f'{self.fleet.robots[0].name} has been torn to shreds!')
+                    self.fleet.robots.remove(self.fleet.robots[0])
+
+                    if len(self.fleet.robots) == 0:
+                        self.robots_alive = False
+                        return self.robots_alive
+                    elif len(self.herd.dinosaurs) == 0:
+                        self.dinos_alive = False
+                        return self.dinos_alive
+                
+        
+    
+    
+    def dino_turn(self):
+        self.show_dino_opponent_options()
+        self.herd.dinosaurs[0].dinosaur_attack(self.fleet.robots[0])
+    
+    
+    def robo_turn(self):
+        self.show_robo_opponent_options()
+        self.fleet.robots[0].robot_attack(self.herd.dinosaurs[0])
+    
+    
     def show_dino_opponent_options(self):
-        pass
+        i = 1
+        for robot in self.fleet.robots:
+            print(f'{robot.name} has {robot.health} health')
+            i += 1
+    
+    
     def show_robo_opponent_options(self):
-        pass
+         i = 1
+         for dino in self.herd.dinosaurs:
+            print(f'{dino.type} has {dino.health} health')
+            i += 1
+    
+    
     def display_winners(self):
-        pass
+        if self.dinos_alive == False:
+            print("The dinosaurs have been vaporized! Robots win!")
+        elif self.robots_alive == False:
+            print("The robots have been torn to shreds! Dinosaurs win!")
+
   
 
