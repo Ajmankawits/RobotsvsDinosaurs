@@ -22,39 +22,24 @@ class Battlefield:
         self.robots_alive = True
         self.dinos_alive = True
         while len(self.fleet.robots) > 0 and len(self.herd.dinosaurs) > 0:
-            if self.fleet.robots[0].health > 0 or self.herd.dinosaurs[0].health > 0:
+
+            
+            
+            if len(self.fleet.robots) != 0:
                 self.robo_turn()
-
                 if self.herd.dinosaurs[0].health <= 0:
                     print(f'{self.herd.dinosaurs[0].type} has been vaporized!')
                     self.herd.dinosaurs.remove(self.herd.dinosaurs[0])
-                elif self.fleet.robots[0].health <= 0:
-                    print(f'{self.fleet.robots[0].name} has been torn to shreds!')
-                    self.fleet.robots.remove(self.fleet.robots[0])
-
-                    if len(self.fleet.robots) == 0:
-                        self.robots_alive = False
-                        return self.robots_alive
-                    elif len(self.herd.dinosaurs) == 0:
-                        self.dinos_alive = False
-                        return self.dinos_alive
                 
+              
+            
+            
+            if len(self.herd.dinosaurs) != 0:
                 self.dino_turn()
-
-                if self.herd.dinosaurs[0].health <= 0:
-                    print(f'{self.herd.dinosaurs[0].type} has been vaporized!')
-                    self.herd.dinosaurs.remove(self.herd.dinosaurs[0])
-                elif self.fleet.robots[0].health <= 0:
+                   
+                if self.fleet.robots[0].health <= 0:
                     print(f'{self.fleet.robots[0].name} has been torn to shreds!')
                     self.fleet.robots.remove(self.fleet.robots[0])
-
-                    if len(self.fleet.robots) == 0:
-                        self.robots_alive = False
-                        return self.robots_alive
-                    elif len(self.herd.dinosaurs) == 0:
-                        self.dinos_alive = False
-                        return self.dinos_alive
-                
         
     
     
@@ -89,4 +74,3 @@ class Battlefield:
             print("The robots have been torn to shreds! Dinosaurs win!")
 
   
-
